@@ -79,6 +79,8 @@ public class RenderPanel extends JPanel {
                         if (checkWin(gameFrame.getBoard())) {
                             repaint();
                             gameFrame.win(tie);
+                            if (tie)
+                                tie = false;
                             break;
                         }
                         gameFrame.nextPlayer();
