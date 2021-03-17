@@ -71,7 +71,7 @@ public class RenderPanel extends JPanel {
                 Point point = e.getPoint();
                 for (int i = 0; i < clickableMarks.size(); i++) {
                     Pair<Integer, Integer> clickableMark = clickableMarks.get(i);
-                    Rectangle rectangle = new Rectangle(clickableMark.getValue1(), clickableMark.getValue2(), 98, 98);
+                    Rectangle rectangle = new Rectangle(clickableMark.getValue1(), clickableMark.getValue2() - 35, 98, 98);
                     if (rectangle.contains(point)) {
                         if (gameFrame.getMark(i).getPlayer() != -1)
                             break;
