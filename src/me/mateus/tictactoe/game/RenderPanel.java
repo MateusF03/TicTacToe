@@ -76,11 +76,14 @@ public class RenderPanel extends JPanel {
                         if (gameFrame.getMark(i).getPlayer() != -1)
                             break;
                         gameFrame.setMark(i, gameFrame.getPlayer());
-                        if (checkWin(gameFrame.getBoard())) {
+                        /*if (checkWin(gameFrame.getBoard())) {
                             repaint();
                             gameFrame.win(tie);
                             if (tie)
                                 tie = false;
+                            break;
+                        }*/
+                        if (checkWin(gameFrame.getBoard())) {
                             break;
                         }
                         gameFrame.nextPlayer();
@@ -125,18 +128,21 @@ public class RenderPanel extends JPanel {
         }
     }
 
-    private boolean checkWin(Mark[] board) {
-        if (Arrays.stream(board).noneMatch(m -> m.getPlayer() == -1)) {
-            tie = true;
-            return true;
-        }
+    public boolean checkWin(Mark[] board) {
         for (int[] wins : WIN_CONDITIONS) {
             int player = board[wins[0]].getPlayer();
             if (player == -1)
                 continue;
             if (player == board[wins[1]].getPlayer() && board[wins[1]].getPlayer() == board[wins[2]].getPlayer()) {
+                repaint();
+                gameFrame.win(false);
                 return true;
             }
+        }
+        if (Arrays.stream(board).noneMatch(m -> m.getPlayer() == -1)) {
+            repaint();
+            gameFrame.win(true);
+            return true;
         }
         return false;
     }
