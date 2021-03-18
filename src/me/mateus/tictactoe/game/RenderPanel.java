@@ -31,7 +31,6 @@ public class RenderPanel extends JPanel {
     private final GameFrame gameFrame;
     private final List<Pair<Integer, Integer>> clickableMarks = new ArrayList<>();
     private final BufferedImage emptyMark = new BufferedImage(98, 98, BufferedImage.TYPE_INT_ARGB);
-    private boolean tie = false;
     private BufferedImage xMark;
     private BufferedImage oMark;
     private BufferedImage grid;
@@ -76,13 +75,6 @@ public class RenderPanel extends JPanel {
                         if (gameFrame.getMark(i).getPlayer() != -1)
                             break;
                         gameFrame.setMark(i, gameFrame.getPlayer());
-                        /*if (checkWin(gameFrame.getBoard())) {
-                            repaint();
-                            gameFrame.win(tie);
-                            if (tie)
-                                tie = false;
-                            break;
-                        }*/
                         if (checkWin(gameFrame.getBoard())) {
                             break;
                         }
